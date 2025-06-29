@@ -18,8 +18,10 @@ const disconnectButton = document.querySelector('#disconnect_button');
 connectButton.addEventListener('click', onClick, false);
 
 async function onClick (event) {
+  console.log('onClick');
   switch (this) {
     case connectButton:
+      console.log('onClick > connectButton');
       if (sm) return;
       sm = new SerialManager();
       await sm.connect();
@@ -27,6 +29,7 @@ async function onClick (event) {
       running = false;
       break;
     case executeButton:
+      console.log('onClick > executeButton');
       if (!sm) return;
       if (running) return;
       running = true;
@@ -36,11 +39,13 @@ async function onClick (event) {
       await dcps.on();
       let ov = 0;
       while (ov < 132) {
+        console.log('onClick > executeButton > ov=' + ov);
         await sleep(1000);
         await dcps.setOutputVoltage(ov);
         ov += 12;
       }
       while (ov > 0) {
+        console.log('onClick > executeButton > ov=' + ov);
         await sleep(1000);
         await dcps.setOutputVoltage(ov);
         ov -= 12;
@@ -50,6 +55,7 @@ async function onClick (event) {
       running = false;
       break;
     case disconnectButton:
+      console.log('onClick > disconnectButton');
       if (!sm) return;
       await sm.disconnect();
       sm = null;
