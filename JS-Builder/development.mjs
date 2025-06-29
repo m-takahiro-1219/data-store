@@ -16,6 +16,8 @@ const executeButton = document.querySelector('#execute_button');
 const disconnectButton = document.querySelector('#disconnect_button');
 
 connectButton.addEventListener('click', onClick, false);
+executeButton.addEventListener('click', onClick, false);
+disconnectButton.addEventListener('click', onClick, false);
 
 async function onClick (event) {
   console.log('onClick');
