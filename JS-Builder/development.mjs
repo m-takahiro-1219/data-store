@@ -35,7 +35,7 @@ async function onClick (event) {
       if (!sm) return;
       if (running) return;
       running = true;
-      await dcps.setOutputCurrent(1);
+      await dcps.setOutputCurrent(0.5);
       await dcps.setOutputVoltage(0);
       await sleep(1000);
       await dcps.on();
