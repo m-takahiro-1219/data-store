@@ -40,18 +40,24 @@ async function onClick (event) {
       await sleep(1000);
       await dcps.on();
       let ov = 0;
+      await sleep(1000);
+      console.log('onClick > executeButton > ov=' + ov);
+      await dcps.setOutputVoltage(ov);
       while (ov < 132) {
-        console.log('onClick > executeButton > ov=' + ov);
         await sleep(1000);
+        console.log('onClick > executeButton > ov=' + ov);
         await dcps.setOutputVoltage(ov);
         ov += 12;
       }
       while (ov > 0) {
-        console.log('onClick > executeButton > ov=' + ov);
         await sleep(1000);
+        console.log('onClick > executeButton > ov=' + ov);
         await dcps.setOutputVoltage(ov);
         ov -= 12;
       }
+      await sleep(1000);
+      console.log('onClick > executeButton > ov=' + ov);
+      await dcps.setOutputVoltage(ov);
       await sleep(1000);
       await dcps.off();
       running = false;
